@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="discord"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type -->
+	<thing-type id="discordBot">
+		<!-- Comment this in for Things which need a Bridge to function.
+			<supported-bridge-type-refs>
+			<bridge-type-ref id="DiscordBridge" />
+			</supported-bridge-type-refs>
+		-->
+
+		<label>Discord Binding Thing</label>
+		<description>Sample thing for Discord Binding</description>
+
+		<config-description>
+			<parameter name="webhookUrl" type="text" required="true">
+				<context>network-address</context>
+				<label>Web hook Url</label>
+				<description>The url of the webhook</description>
+			</parameter>
+
+		</config-description>
+	</thing-type>
+
+</thing:thing-descriptions>
