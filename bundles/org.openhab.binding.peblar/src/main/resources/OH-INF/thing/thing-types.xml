@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="peblar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<thing-type id="peblar-charger">
+		<label>Peblar Binding Thing</label>
+		<description>A binding for a Peblar ev charger </description>
+		<category>poweroutlet</category>
+		<channels>
+			<channel id="charge-current-limit" typeId="peblar-charge-limit"/>
+			<channel id="charge-current-limit-source" typeId="limit-source"/>
+			<channel id="lock-state" typeId="lock-state"/>
+			<channel id="force-one-phase" typeId="force-one-phase"/>
+			<channel id="current-phase-1" typeId="system.electric-current"/>
+			<channel id="current-phase-2" typeId="system.electric-current"/>
+			<channel id="current-phase-3" typeId="system.electric-current"/>
+			<channel id="voltage-phase-1" typeId="system.electric-voltage"/>
+			<channel id="voltage-phase-2" typeId="system.electric-voltage"/>
+			<channel id="voltage-phase-3" typeId="system.electric-voltage"/>
+			<channel id="power-phase-1" typeId="system.electric-power"/>
+			<channel id="power-phase-2" typeId="system.electric-power"/>
+			<channel id="power-phase-3" typeId="system.electric-power"/>
+			<channel id="power-total" typeId="system.electric-power"/>
+			<channel id="energy-total" typeId="system.electric-energy"/>
+			<channel id="energy-session" typeId="system.electric-energy"/>
+			<channel id="charge-point-state" typeId="charge-point-state"/>
+		</channels>
+
+		<config-description>
+			<parameter name="hostname" type="text" required="true">
+				<context>network-address</context>
+				<label>Hostname</label>
+				<description>Hostname or IP address of the device</description>
+			</parameter>
+			<parameter name="token" type="text" required="true">
+				<context>password</context>
+				<label>token</label>
+				<description>The authorization token of the charger</description>
+			</parameter>
+			<parameter name="refreshInterval" type="integer" unit="s" min="1">
+				<label>Refresh Interval</label>
+				<description>Interval the device is polled in sec.</description>
+				<default>10</default>
+				<advanced>true</advanced>
+			</parameter>
+		</config-description>
+	</thing-type>
+	<channel-type id="peblar-charge-limit">
+		<item-type>Number:ElectricCurrent</item-type>
+		<label>Current</label>
+		<tags>
+			<tag>Current</tag>
+			<tag>Setpoint</tag>
+		</tags>
+		<state min="0" max="16" step="0.5" pattern="%.3f A" readOnly="false"/>
+	</channel-type>
+	<channel-type id="force-one-phase">
+		<item-type>Switch</item-type>
+		<label>Force One Phase</label>
+		<description>The actual current limit</description>
+	</channel-type>
+	<channel-type id="lock-state">
+		<item-type>Contact</item-type>
+		<label>Lock State</label>
+		<description>Lock state of the charger</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="limit-source">
+		<item-type>String</item-type>
+		<label>Limit Source</label>
+		<description>Limit source</description>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="charge-point-state">
+		<item-type>String</item-type>
+		<label>Charge Point State</label>
+		<description>Limit source</description>
+		<state readOnly="true"/>
+	</channel-type>
+</thing:thing-descriptions>
